@@ -7,6 +7,7 @@ var email = document.querySelector("#inputEmail");
 var emailHelp = document.querySelector("#inputEmailHelp");
 var senha = document.querySelector("#inputPassword");
 var senhaHelp = document.querySelector("#inputPasswordHelp");
+var result = document.querySelector('#inputResult')
 
 // Event listeners para os campos do form
 nome.addEventListener('focusout', validarNome);
@@ -17,13 +18,14 @@ senha.addEventListener('focusout', validarSenha);
 
 // Função para validar Nome
 function validarNome(e) {
-    const regexNome = /^[A-Za-z]{7,}$/;
-    if (!e.target.value.trim().match(regexNome) || regexNome.length<6) {
+    const regexNome = /^[A-Za-z]{6,}$/;
+    if (!e.target.value.trim().match(regexNome) || regexNome.length < 6) {
         nomeHelp.textContent = "Formato de nome inválido";
         nomeHelp.style.color = "red";
     } else {
         nomeHelp.textContent = "";
     }
+
 }
 
 // Função para validar Ano
@@ -55,6 +57,7 @@ function validarEmail() {
     } else {
         emailHelp.textContent = "";
     }
+
 }
 
 // Função para validar Senha
@@ -73,6 +76,9 @@ function validarSenha() {
         senhaHelp.textContent = `Força da senha: ${forcaSenha}`;
         senhaHelp.style.color = "green";
     }
+
+    verificarFormulario();
+
 }
 
 // Função para calcular a força da senha
@@ -91,5 +97,19 @@ function calcularForcaSenha(senha) {
     } else {
         return "inválida";
     }
+
 }
 
+// Função para verificar se todos os campos do formulário são válidos
+function verificarFormulario() {
+    if (nomeHelp.textContent === "" &&
+        anoHelp.textContent === "" &&
+        emailHelp.textContent === "" &&
+        senhaHelp.textContent.startsWith("Força da senha")) {
+        result.textContent = "Seus dados foram registrados com sucesso :)";
+        result.style.color = "green";
+    } else {
+        result.textContent = "Seus dados não foram registrados :(";
+        result.style.color = "red";
+    }
+}
