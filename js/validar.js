@@ -18,7 +18,7 @@ senha.addEventListener('focusout', validarSenha);
 // Função para validar Nome
 function validarNome(e) {
     const regexNome = /^[A-Za-z]{7,}$/;
-    if (!e.target.value.trim().match(regexNome) || regexNome.length<6) {
+    if (!e.target.value.trim().match(regexNome) || regexNome.length<5) {
         nomeHelp.textContent = "Formato de nome inválido";
         nomeHelp.style.color = "red";
     } else {
